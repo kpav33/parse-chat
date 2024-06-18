@@ -1,6 +1,13 @@
 import { useState } from "react";
 import styles from "../styles/Auth.module.css";
 
+// https://blog.back4app.com/real-time-nextjs-applications-with-parse/
+
+// parsechatkpavtest.b4a.io => Server URL and Live Query
+
+// @parse/react-ssr This is alpha version of the package, last publish 2 years ago, do we need to use ssr in the app?
+// Live queries are meant to be used in real-time reactive applications, where just using the traditional query paradigm would come with some problems, like increased response time and high network and server usage. Live queries should be used in cases where you need to continuous update a page with fresh data coming from the database, which often happens in, but is not limited to, online games, messaging clients and shared to do lists.
+// Probably best to use parse javascript sdk package directly and not the react versions, because react versions all seem to be in alpha and have been last published 2 years ago and are not active
 export default function Auth() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [username, setUserName] = useState(false);
