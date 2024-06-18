@@ -28,6 +28,67 @@ export default function Home({ parseQuery }) {
   const { results: messages } = useParseQuery(parseQuery);
   const router = useRouter();
 
+  // // Client side instead of using SSR
+  // const [messages, setMessages] = useState([]);
+
+  // // Fetch messages on client side
+  // useEffect(() => {
+  //   const fetchMessages = async () => {
+  //     const parseQuery = new Parse.Query("Message");
+  //     parseQuery.ascending("createdAt");
+
+  //     try {
+  //       const results = await parseQuery.find();
+  //       setMessages(results);
+  //     } catch (error) {
+  //       console.error("Error while fetching messages", error);
+  //     }
+  //   };
+
+  //   fetchMessages();
+
+  //   // https://parseplatform.org/Parse-SDK-JS/api/master/Parse.LiveQuerySubscription.html
+
+  //   // Setup live query subscription
+  //   const setupLiveQuery = async () => {
+  //     const query = new Parse.Query("Message");
+  //     const subscription = await query.subscribe();
+
+  //     // subscription.on("create", (object) => {
+  //     //   setMessages((prevMessages) => [...prevMessages, object]);
+  //     // });
+
+  //     // Add checks or remove this otherwise the messages get doubled, since fetchMessages also gets the data, when a value is changed
+  //     subscription.on("create", (object) => {
+  //       setMessages((prevMessages) => {
+  //         // Check if the message already exists in the state
+  //         if (!prevMessages.some((msg) => msg.id === object.id)) {
+  //           return [...prevMessages, object];
+  //         }
+  //         return prevMessages;
+  //       });
+  //     });
+
+  //     subscription.on("update", (object) => {
+  //       setMessages((prevMessages) =>
+  //         prevMessages.map((msg) => (msg.id === object.id ? object : msg))
+  //       );
+  //     });
+
+  //     subscription.on("delete", (object) => {
+  //       setMessages((prevMessages) =>
+  //         prevMessages.filter((msg) => msg.id !== object.id)
+  //       );
+  //     });
+
+  //     return () => {
+  //       subscription.unsubscribe();
+  //     };
+  //   };
+
+  //   setupLiveQuery();
+  // }, []);
+
   // const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
 
