@@ -28,13 +28,19 @@ export default function Auth() {
 
   const toggleIsRegistering = () => setIsRegistering(!isRegistering);
 
+  // Login user with parse and route them to /home page
   const handleLogin = () => {
+    // User is default class in Parse to be used for authentication needs
+
     Parse.User.logIn(username, password).then((user) => {
       console.log(`successfully loged ${user.get("username")}`);
       router.push("/home");
     });
   };
+
+  // Create new User in database with given username and password and login the user to the app
   const handleRegister = () => {
+    // Built-in Classes (like Parse.User) can be instantiated directly because they come with Parse's built-in methods and properties, we can create a new one directly, without extending first
     const user = new Parse.User();
 
     user
@@ -49,8 +55,8 @@ export default function Auth() {
 
   const handleAuth = () => (isRegistering ? handleRegister() : handleLogin());
   const [spanText, authText] = isRegistering
-    ? ["already have an account ? log in!", "sign up"]
-    : ["don't have an account ? register", "sign in"];
+    ? ["Already have an account? Log In!", "Sign Up"]
+    : ["Don't have an account? Register", "Sign In"];
 
   return (
     <div className={styles.container}>
